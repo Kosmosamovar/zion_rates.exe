@@ -27,11 +27,17 @@ python -m venv .venv
 ```powershell
 .\.venv\Scripts\python run.py --pretty
 .\.venv\Scripts\python run.py -o rates.json
+.\.venv\Scripts\python run.py --pairs BRL COP
+.\.venv\Scripts\python run.py --date 2026-09-01 --pairs USD/BRL,USD/PEN
 ```
 
 Флаги:
 - `-o, --output` — путь к файлу для записи JSON (по умолчанию — stdout).
 - `--pretty` — форматированный вывод JSON.
+- `-p, --pairs` — список валют/пар через пробел или запятую, например `BRL COP` или
+  `USD/BRL,USD/COP` (по умолчанию — все: `ARS BRL BOB COP PYG PEN`).
+- `-d, --date` — дата курса в формате `YYYY-MM-DD` (по умолчанию — последние доступные курсы,
+  при указании даты используются исторические данные `/rates/{id}/history`).
 
 ## Сборка exe
 
@@ -48,6 +54,7 @@ python -m venv .venv
 {
   "source": "zion.ar",
   "base": "USD (CCL)",
+  "date": null,
   "updatedAt": 1789025100000,
   "updatedAtIso": "2026-09-10T07:25:00+00:00",
   "rates": [
